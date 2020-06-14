@@ -1,0 +1,24 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+
+zuul:
+  prefix: /imooc
+  routes:
+    course:
+      path: /course/**
+      serviceId: eureka-client-course
+      # 不删除path前缀
+      strip-prefix: false
+    user:
+      path: /user/**
+      serviceId: eureka-client-user
+      strip-prefix: false
